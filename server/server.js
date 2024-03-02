@@ -76,10 +76,12 @@ function CreateServer(port = 24480)
 
         // Location
         let postcode = req.query.postcode; //postcode
+
         let lat_min = Number(req.query.latmin);
         let lat_max = Number(req.query.latmax);
         let lon_min = Number(req.query.lonmin);
         let lon_max = Number(req.query.lonmax);
+
 
         // Open 24 hours?
         let aoi = req.query.aoi; // always open

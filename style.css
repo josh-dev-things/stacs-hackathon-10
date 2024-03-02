@@ -1,0 +1,40 @@
+body {
+    background-color: lightblue;
+}
+h1 {
+    text-align: center;
+}
+.content {
+    display: flex;
+    justify-content: space-between;
+}
+.grid-container {
+    display: grid;
+    height: 2500;
+    width: 2500;
+    grid-template-columns: repeat(90,10px);
+    column-gap: 0px;
+    row-gap: 0px;
+}
+.grid-item {
+    height: 10px;
+    width: 10px;
+    
+    padding: 0px;
+    background-color: green;
+}
+.grid-item:hover {
+    background-color: lightyellow;
+    display: block;
+}
+.filler {
+    height: 10px;
+    width: 10px;
+    max-width: 100%;
+    padding: 0px;
+    background-color: lightblue;
+}
+#right {
+    text-align: center;
+    margin: 0 auto;
+}
