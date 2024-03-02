@@ -41,3 +41,26 @@ function populateGrid() {
     }
     return false;
 } */
+function getAtms() {
+    let wheelchair = document.getElementById("waInput").value;
+    let pc = document.getElementById("pcInput").value;
+    let hour = document.getElementById("hourInput").value;
+
+    let url = `http://trenco.cs.st-andrews.ac.uk:24480/data/atms/brands/santander-uk-plc/?`;
+
+    if (wheelchair) url += `wa=${wheelchair}&`;
+    if (pc) url += `postcode=${pc}&`;
+    if (hour) url += `aoi=${hour}&`;
+
+    fetch(url)
+        .then(response => {
+            console.log(response.status);
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => {
+            console.log("Error: " + error);
+        });
+}
