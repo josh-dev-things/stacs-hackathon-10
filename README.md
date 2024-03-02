@@ -1,5 +1,6 @@
 # stacs-hackathon-10
 The STACS Hack 24Hr Hackathon
+Theme: `8-bit`
 
 ## Team: `Arrays The Roof`
     - Marcus Elizondo-Darwin
