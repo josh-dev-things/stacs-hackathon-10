@@ -76,6 +76,10 @@ function CreateServer(port = 24480)
 
         // Location
         let postcode = req.query.postcode; //postcode
+        let lat_min = Number(req.query.latmin);
+        let lat_max = Number(req.query.latmax);
+        let lon_min = Number(req.query.lonmin);
+        let lon_max = Number(req.query.lonmax);
 
         // Open 24 hours?
         let aoi = req.query.aoi; // always open
@@ -145,6 +149,24 @@ function CreateServer(port = 24480)
                 
                     default:
                         break;
+                }
+            }
+
+            if(lon_min !== undefined  && lon_max !== undefined)
+            {
+                let coords = atm.Location.PostalAddress.GeoLocation.GeographicCoordinates;
+                if(Number(coords.Longitude) > lon_max || Number(coords.Longitude) < lon_min)
+                {
+                    return false;
+                }
+            }
+            
+            if(lat_min !== undefined && lat_max !== undefined)
+            {
+                let coords = atm.Location.PostalAddress.GeoLocation.GeographicCoordinates;
+                if(Number(coords.Latitude) > lat_max || Number(coords.Latitude) < lat_min)
+                {
+                    return false;
                 }
             }
 
