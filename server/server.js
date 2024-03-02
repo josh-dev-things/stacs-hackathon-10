@@ -259,9 +259,4 @@ function isBrand(brand, jso)
     return jso.BrandName.toLowerCase().replace(/ /g, "-").trim() === brand.trim();
 }
 
-function copyJSO(jso)
-{
-    return JSON.parse(JSON.stringify(jso));
-}
-
 module.exports = CreateServer;
