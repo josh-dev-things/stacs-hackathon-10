@@ -1,0 +1,23 @@
+{
+  "name": "ncr-interactive-infographic",
+  "version": "0.0.1",
+  "description": "Submision to the STACS Hack event",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josh-dev-things/stacs-hackathon-10.git"
+  },
+  "author": "M Elizondo-Darwin, J James-Lee, S Terry",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/josh-dev-things/stacs-hackathon-10/issues"
+  },
+  "homepage": "https://github.com/josh-dev-things/stacs-hackathon-10#readme",
+  "dependencies": {
+    "express": "^4.18.3"
+  }
+}
