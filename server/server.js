@@ -47,7 +47,7 @@ function CreateServer(port = 24480)
         }
     });
 
-    app.get("/data/atms/:brand", function(req,res){
+    app.get("/data/atms/brands/:brand", function(req,res){
         try {
             let brand_atms = atms.data[0].Brand.filter(jso => isBrand(req.params.brand, jso));
             if(brand_atms.length > 0)
@@ -75,7 +75,10 @@ function CreateServer(port = 24480)
         let wa = req.query.wa // wa=true/false
 
         // Location
-        let postcode = req.query.postcode; //
+        let postcode = req.query.postcode; //postcode
+
+        // Open 24 hours?
+        let aoi = req.query.aoi; // always open
 
         function satisfiesQuery(atm)
         {
@@ -89,6 +92,16 @@ function CreateServer(port = 24480)
             if(postcode)
             {
                 if(atm.Location.PostalAddress.PostCode.replace(/ /g, "") !== postcode.toUpperCase().replace(/-/g, ""))
+                {
+                    return false;
+                }
+            }
+
+            if(aoi)
+            {
+                let aoi_bool = aoi.toLowerCase() === "true";
+
+                if(atm.Access24HoursIndicator !== aoi_bool)
                 {
                     return false;
                 }
