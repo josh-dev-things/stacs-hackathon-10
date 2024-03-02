@@ -34,14 +34,6 @@ function CreateServer(port = 24480)
         `)
     });
 
-    app.use((req) => {
-        console.log(`
-        =============
-        Connection from client @ ${req.ip}
-        =============
-        `)
-    });
-
     app.get("/data/atms", function(req, res){
 
         try {
