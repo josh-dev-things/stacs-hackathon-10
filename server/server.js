@@ -33,6 +33,14 @@ function CreateServer(port = 24480)
             res.status(500).json({});
         }
     });
+
+    app.get("/data/atms/:id", function(req,res){
+        try {
+
+        } catch(error) {
+            
+        }
+    });
 }
 
 module.exports = CreateServer;
