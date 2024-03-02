@@ -11,13 +11,12 @@ function populateGrid() {
     const grid = document.getElementById("map");
     for (let long=max_long; long>min_long; long -= .1) {
         for (let lat = min_lat; lat<max_lat; lat += .1){
-            // if is land
             newDiv = document.createElement("div");
+            // if there is atm in rnage
             newDiv.id = `${long},${lat}`;
             newDiv.classList.add("grid-item");
             grid.appendChild(newDiv);
-            //if not is land
-            
+            //if no atm in range
         }
     }
 }
