@@ -1,17 +1,24 @@
 body {
     background-color: lightblue;
 }
+h1 {
+    text-align: center;
+}
+.content {
+    display: flex;
+    justify-content: space-between;
+}
 .grid-container {
     display: grid;
     height: 2500;
     width: 2500;
-    grid-template-columns: repeat(auto-fit,minmax(15px,1fr));
+    grid-template-columns: repeat(90,10px);
     column-gap: 0px;
     row-gap: 0px;
 }
 .grid-item {
-    height: 15px;
-    width: 15px;
+    height: 10px;
+    width: 10px;
     
     padding: 0px;
     background-color: green;
@@ -20,10 +27,14 @@ body {
     background-color: lightyellow;
     display: block;
 }
-.sea {
-    height: 15px;
-    width: 15px;
+.filler {
+    height: 10px;
+    width: 10px;
     max-width: 100%;
     padding: 0px;
     background-color: lightblue;
+}
+#right {
+    text-align: center;
+    margin: 0 auto;
 }
