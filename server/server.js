@@ -31,6 +31,13 @@ function CreateServer(port = 24480)
         SERVER ONLINE
         =============
         Listening on port: ${port}
+        `)
+    });
+
+    app.use((req) => {
+        console.log(`
+        =============
+        Connection from client @ ${req.ip}
         =============
         `)
     });
