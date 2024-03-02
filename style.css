@@ -10,16 +10,15 @@ h1 {
 }
 .grid-container {
     display: grid;
-    height: 2500;
-    width: 2500;
-    grid-template-columns: repeat(90,10px);
+    height: 1200;
+    width: 1000;
+    grid-template-columns: repeat(100,10px);
     column-gap: 0px;
     row-gap: 0px;
 }
 .grid-item {
     height: 10px;
     width: 10px;
-    
     padding: 0px;
     background-color: green;
 }
@@ -30,9 +29,7 @@ h1 {
 .filler {
     height: 10px;
     width: 10px;
-    max-width: 100%;
     padding: 0px;
-    background-color: lightblue;
 }
 #right {
     text-align: center;
