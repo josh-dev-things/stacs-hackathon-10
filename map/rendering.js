@@ -10,7 +10,7 @@ const incr = .1;
 window.addEventListener("load", () => {
     populateGrid();
 
-    document.getElementById("map").addEventListener('mouseover', function (event) {
+    document.getElementById("map").addEventListener('click', function (event) {
         let params = event.target.id.split(","); // split into lat and lon 
         if (!isNaN(params[0] - parseFloat(params[0])) && !isNaN(params[1] - parseFloat(params[1]))) { // if valid floats
             emptyInfo();
