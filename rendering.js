@@ -54,10 +54,11 @@ async function displayInfo(lat,lon) {
     let response = await fetch(q).then (r => r.json())
     response.forEach(atm => {
         let atmInfo = document.createElement('p');
-        let text = `Town: ${atm.Location.PostalAddress.TownName}\n`
-        text += `Accessibility Features: ${atm.Accessibility}\n`
-        text += `24 hours: ${atm.Access24HoursIndicator ? "Yes" : "No"}\n`
-        atmInfo.appendChild(document.createTextNode(text))
+        let text = `${atm.Location.PostalAddress.TownName}, ${atm.Location.PostalAddress.PostCode}<br>`
+        text += `Features: ${atm.ATMServices}<br> Accessibility: ${atm.Accessibility}<br>`
+        text += `24 hours: ${atm.Access24HoursIndicator ? "Yes" : "No"}<br>`
+        atmInfo.innerHTML = text
+        //atmInfo.appendChild(document.createTextNode(text))
         elem.append(atmInfo)
     })
 }
