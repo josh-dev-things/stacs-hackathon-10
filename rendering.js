@@ -7,17 +7,18 @@ const incr = .1
 
 window.addEventListener("load", () => {
     populateGrid();
-})
 
-document.body.addEventListener('click', function (event) {
-    if (event.target.id.search(new RegExp()) > -1) {
-
-    }
+    document.getElementById("map").addEventListener('mouseover', function (event) {
+        let params = event.target.id.split(",")
+        if (!isNaN(params[0] - parseFloat(params[0])) && !isNaN(params[1] - parseFloat(params[1]))) {
+            console.log("click")
+            emptyInfo();
+            displayInfo(Number(params[0]), Number(params[1]));
+        }
+    })    
 })
 
 async function populateGrid() {
-    let count = 0;
-    
     let response = await fetch(url).then(r => r.json());
     for (let lat = max_lat; lat>min_lat; lat -= incr){ // Up -> Down
         for (let lon = min_lon+incr; lon<max_lon; lon += incr) { // Left -> Right
@@ -28,15 +29,12 @@ async function populateGrid() {
             });
 
             if(atmsInZone.length > 0) {
-                appendToGrid(true, lon, lat);
-                count++;
+                appendToGrid(true, lat, lon);
             } else { //if no atm in range
                 appendToGrid(false, lat, lon);
-                count++;
             }
         }
     }
-    console.log(`${count} Grids displayed`);
 }
 
 function appendToGrid(bool, lat, lon) {
@@ -44,11 +42,6 @@ function appendToGrid(bool, lat, lon) {
     if (bool) {
         newDiv.id = `${lat},${lon}`;
         newDiv.classList.add("grid-item");
-        newDiv.addEventListener('click', () => {
-            emptyInfo();
-            displayInfo(lat, lon);
-            //document.getElementById("info").innerHTML = elem.innerHTML
-        })
     } else {
         newDiv.classList.add("filler");
     }
