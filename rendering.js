@@ -24,27 +24,11 @@ async function populateGrid() {
                 count++;
             }
         }
-        console.log(count);
+        console.log(`${count} Grids displayed`);
     }
     
-    /* for (let long=min_long; long<max_long; long += incr) {
-        for (let lat = max_lat; lat>min_lat; lat -= incr){
-            let q = `${url}latmin=${lat}&latmax=${lat+incr}&lonmin=${long-incr}&lonmax=${long}`
-            fetch (q)
-                .then (r => r.json())
-                .then(response => {
-                    let size = response.length
-                    if (size > 0) {
-                        appendToGrid(true, long, lat);
-                    } else { //if no atm in range
-                        appendToGrid(false, long, lat);
-                    }
-                })
-                .catch(error => {
-                    console.log(`Error: ${error}`)
-                })
-        }
-    } */
+    let response = await fetch(url).then(r => r.json());
+    let size
 }
 
 function appendToGrid(bool, long, lat) {
