@@ -1,5 +1,5 @@
 body {
-    background-color: #c6ecff;
+    background-color: #258b90;
     font-family: "Verdana", sans-serif
 }
 h1, h2 {
@@ -9,6 +9,7 @@ h1, h2 {
 }
 .content {
     display: flex;
+    text-align: center;
     justify-content: space-between;
 }
 .grid-container {
@@ -18,10 +19,10 @@ h1, h2 {
     grid-template-columns: repeat(100,10px); 
     column-gap: 0px;
     row-gap: 0px;
-    background-image: url('./map/map.png');
+    /* background-image: url('./map.png');
     background-size: 1400px 1300px;
     background-repeat: no-repeat;
-    background-position: -350px -60px;
+    background-position: -350px -60px; */
 }
 .grid-item {
     height: 10px;
@@ -42,6 +43,9 @@ h1, h2 {
 #right {
     text-align: center;
     margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 #info {
     max-height: 1200;
