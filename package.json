@@ -1,6 +1,6 @@
 {
-  "name": "ncr-interactive-infographic",
-  "version": "0.0.1",
+  "name": "santanware-api",
+  "version": "1.0.0",
   "description": "Submision to the STACS Hack event",
   "main": "index.js",
   "scripts": {
