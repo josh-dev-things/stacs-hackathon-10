@@ -17,21 +17,26 @@ document.body.addEventListener('click', function (event) {
 
 async function populateGrid() {
     let count = 0;
+    
+    let response = await fetch(url).then(r => r.json());
     for (let lat = max_lat; lat>min_lat; lat -= incr){ // Up -> Down
         for (let lon = min_lon+incr; lon<max_lon; lon += incr) { // Left -> Right
-            let q = `${url}latmin=${lat-incr}&latmax=${lat}&lonmin=${lon}&lonmax=${lon+incr}`
-            let response = await fetch (q).then(r => r.json());
-            let size = response.length
-            if (size > 0) {
-                appendToGrid(true, lat, lon);
+            atmsInZone = response.filter((atm) => {
+                let coords = atm.Location.PostalAddress.GeoLocation.GeographicCoordinates;
+                return (Number(coords.Longitude) < lon+incr && Number(coords.Longitude) > lon) &&
+                        (Number(coords.Latitude) < lat && Number(coords.Latitude) > lat-incr);
+            });
+
+            if(atmsInZone.length > 0) {
+                appendToGrid(true, lon, lat);
                 count++;
             } else { //if no atm in range
                 appendToGrid(false, lat, lon);
                 count++;
             }
         }
-        console.log(`${count} Grids displayed`);
     }
+    console.log(`${count} Grids displayed`);
 }
 
 function appendToGrid(bool, lat, lon) {
