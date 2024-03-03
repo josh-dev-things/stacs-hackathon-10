@@ -57,13 +57,15 @@ function getAtms() {
 }
 
 function getBranch() {
-    let wheelchair = document.getElementById("waInput").value;
-    let town = document.getElementById("townInput").value;
+    let wheelchair = document.getElementById("waBranchInput").value;
+    let town = document.getElementById("townBranchInput").value;
 
     let url = `http://trenco.cs.st-andrews.ac.uk:24480/data/branches/brands/santander-uk-plc/?`;
 
     if (wheelchair) url += `wa=${wheelchair}&`;
     if (town) url += `town=${town}&`;
+
+    console.log(url);
 
     fetch(url)
         .then(response => {
@@ -81,6 +83,15 @@ function getBranch() {
                 AccessibilityElement.textContent = `Branch Accessibility: ${branch.Accessibility}`;
                 branchElement.appendChild(AccessibilityElement);
                 
+                // Check if the branch has standard availability
+                if (branch.Availability && branch.Availability.StandardAvailability) {
+                    let openingHoursElement = document.createElement('p');
+                    let openingHours = branch.Availability.StandardAvailability.Day.map(day => {
+                        return `${day.Name}: ${day.OpeningHours[0].OpeningTime} - ${day.OpeningHours[0].ClosingTime}`;
+                    }).join('\n');
+                    openingHoursElement.textContent = `Opening Hours:\n${openingHours}`;
+                    branchElement.appendChild(openingHoursElement);
+                }
 
         
                 parentElement.appendChild(branchElement);
