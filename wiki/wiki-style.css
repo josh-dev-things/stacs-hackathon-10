@@ -1,0 +1,80 @@
+#sidebar {
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    left: 0;
+    height: 100%; /* Full-height */
+    width: 250px; /* Set the width of the sidebar */
+    background-color: #f8f9fa; /* Background color */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+    font-size: 16px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#sidebar a {
+    display: block; /* Make the links take up the full width of the sidebar */
+    padding: 10px 0; /* Add some vertical padding */
+    color: #0556ec; /* Black text */
+    text-decoration: none; /* Remove underline */
+}
+
+#sidebar a::before {
+    content: "• "; /* Add bullet point before each link */
+    color: #0556ec; /* Black bullet point */
+}
+
+#main {
+    margin-left: 250px;
+    font-size: 20px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.subtitle {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#header {
+    position: relative;
+    background-color: #c71f1f; /* Dark background */
+    color: #fff; /* White text */
+    padding: 50px; /* Large padding */
+    text-align: center; /* Centered text */
+    font-family: 'Courier New', Courier, monospace;
+    font-size: larger;
+}
+
+#header h1 {
+    font-size: 2.5em; /* Large font size */
+}
+
+
+.subtitle {
+    color: blue;
+}
+
+hr {
+    border: none;
+    border-top: 5px solid #f00;
+    color: #333;
+    overflow: visible;
+    text-align: center;
+    height: 5px;
+}
+
+.showData {
+    max-height: 600px; 
+    overflow-y: auto; 
+    border: 1px solid black; 
+    margin-top: 20px; 
+    padding: 10px; 
+}
+
+.showData > div {
+    border-top: 1px solid black; 
+    margin-top: 10px; 
+    padding-top: 10px; 
+}
+
+.showData > div:first-child {
+    border-top: none; 
+    margin-top: 0; 
+}
