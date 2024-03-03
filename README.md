@@ -9,4 +9,10 @@ Theme: `8-bit`
 
 ## TODO
 - [x] Make TODO List
-- Start the Hackathon
+- [x] Start the Hackathon
+### Infographic
+- [x] Access data sets to get branch and ATM locations
+- [] Plot these locations on the screen using Long & Lat as grid coords?
+### HTTP
+- [x] Make boilerplate server (RESTful)
+- [x] Make boilerplate webpage

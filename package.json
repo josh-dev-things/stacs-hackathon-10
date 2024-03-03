@@ -1,0 +1,24 @@
+{
+  "name": "santanware-api",
+  "version": "1.0.0",
+  "description": "Submision to the STACS Hack event",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josh-dev-things/stacs-hackathon-10.git"
+  },
+  "author": "M Elizondo-Darwin, J James-Lee, S Terry",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/josh-dev-things/stacs-hackathon-10/issues"
+  },
+  "homepage": "https://github.com/josh-dev-things/stacs-hackathon-10#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.3"
+  }
+}

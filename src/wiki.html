@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="wiki-style.css">
+    <script src ="wiki.js"></script>
+    <title>SantanWare API</title>
+</head>
+<body>
+
+    <div id="header">
+        <h1 id="title">SantanWare API</h1>
+    </div>
+
+    <div id="sidebar">
+        <p style="text-align: center;"><strong>DEMOS</strong></p>
+        <a href="#ATMsearch">Search for ATM demo</a>
+        <a href="#BranchSearch">Search for Branch demo</a>
+        <p style="text-align: center;"><strong>EXPLANATIONS</strong></p>
+        <a href="#ATMExplanation">ATM data explanation</a>
+        <a href="#BranchExplanation">Branch data explanation</a>
+        <p style="text-align: center;"><strong>API Reference</strong></p>
+        <a href="#RetrieveTownorPc">ATMs in Town or PostCode</a>
+        <a href="#24list">24hr ATMs</a>
+        <a href="#wcAtms">WheelChair ATMs</a>
+        <a href="#combineSearch">Combined ATM Search</a>
+    </div>
+    
+    <div id="main">
+
+        <div class="subtitles">
+            <h2 class="subtitle" id="introduction">Who? What? SantanWare?</h2>
+            <p class="description">
+                SantanWare is an API that provides information about 1658 Santander ATMs across the UK </br>
+                and 444 Santander branches. The data that we use was last updated in <strong>2020-01-06</strong>,</br>
+                and is under the open banking licence and follows the terms of use. But it begs the question...</br>
+                <strong>WHY?</strong><br>
+                Why SantanWare? It's simple really. We wanted to create a easy to use API with the goal of making<br>
+                banking accessible for everyone. With a few search parameters, you can find what branches have wheel chair <br>
+                accessability and audio aid, aswell as the address of the ATM, the branch it belongs to and minimum withdrawl ammounts.<br>
+            </p>
+        </div>
+
+        <div class="subtitles">
+            <h2 class="subtitle" id="Documentation">Documentation</h2>
+            <p class="description">The documentation is organised as follows:</p>
+            <ul>
+                <li>Demos that show how the API could be used</li>
+                <li>Explanations of how the data is recieved</li>
+                <li>Reference, the API specification</li>
+            </uli>
+        </div>
+
+        <div class="subtitles">
+            <h2 class="subtitle" id="reference">API reference</h2>
+            <p class="description">The SantasWhere API provides a wide range of functionality for developers, such as:</p>
+            <ul>
+                <li>Retrieve data about ATMs in a town or post code</li>
+                <li>List all the 24 hour ATMs</li>
+                <li>Show all the ATMs that have wheel chair access</li>
+                <li>Or, combine all of the above :)</li>
+            </uli>
+        </div>
+
+        <hr>
+
+        <div class="subtitles">
+            <h2 class="subtitle" id="ATMsearch">Search for ATM Demo</h2>
+            <form onsubmit="event.preventDefault(); getAtms();">
+                <input type="text" id="waInput" placeholder="Enter WheelChair Access(true/false)">
+                <input type="text" id="townInput" placeholder="Enter Town name">
+                <input type="text" id="pcInput" placeholder="Enter PostCode">
+                <input type="text" id="hourInput" placeholder="Enter 24H Access (true/false)">
+                <button type="submit">Search</button>
+            </form>
+            <div class="showData" id="atmInfo"></div>
+        </div>
+
+        <div class="subtitles">
+            <h2 class="subtitle" id="BranchSearch">Search for Branch Demo</h2>
+            <form onsubmit="event.preventDefault(); getBranch();">
+                <input type="text" id="waBranchInput" placeholder="Enter WheelChair Access(true/false)">
+                <input type="text" id="townBranchInput" placeholder="Enter Town name">
+                <button type="submit">Search</button>
+            </form>
+            <div class="showData" id="BranchInfo"></div>
+        </div>
+
+        <hr>
+
+        <div class="subtitles">
+            <h2 class="subtitle" id="ATMExplanation">How ATM data is recieved</h2>
+            <p class="description">
+                When a request is made to the API, the data you will recieve is in the form of<br>
+                an array of ATM objects. This can be interpreted as JSON. All ATMs have the same fields,<br> 
+                so can all be treated the same when parsing the data. Below is an example of the server response,<br> 
+                if the query paramerter was the post code SY231DE:<br>
+            </p>
+            <div class="code">
+                <pre><code id="jsonExample"></code></pre>
+            </div>
+        </div>
+
+        <div class="subtitles">
+            <h2 class="subtitle" id="BranchExplanation">How branch data is recieved</h2>
+            <p class="description">
+                When a request is made to the API, the data you will recieve is in the form of<br>
+                an array of branch objects. This can be interpreted as JSON. All branches have the same fields,<br> 
+                so can all be treated the same when parsing the data. Below is an example of the server response,<br> 
+                if the query paramerter was the town Manchester:<br>
+            </p>
+            <div class="code">
+                <pre><code id="jsonExample2"></code></pre>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="subtitles">
+            <h2 class="subtitle" id="RetrieveTownorPc">GET ATMs from Town or PostCode</h2>
+            <p class="description">For a Town:<br>URL parameter: <strong>town</strong></p>
+            <div class="curl">
+                <pre><code>curl -X GET "http://trenco.cs.st-andrews.ac.uk:24480/data/atms/brands/santander-uk-plc/?town=dundee"</code></pre>
+            </div>
+            <p class="description">For a PostCode:<br>URL parameter: <strong>postcode</strong></p>
+            <div class="code">
+                <pre><code>curl -X GET "http://trenco.cs.st-andrews.ac.uk:24480/data/atms/brands/santander-uk-plc/?postcode=SY231DE"</code></pre>
+            </div>
+        </div>
+
+        <div class="subtitles">
+            <h2 class="subtitle" id="24list">GET list of 24hr ATMs</h2>
+            <p class="description">URL parameter: <strong>aoi</strong></p>
+            <div class="curl">
+                <pre><code>curl -X GET "http://trenco.cs.st-andrews.ac.uk:24480/data/atms/brands/santander-uk-plc/?aoi=true"</code></pre>
+            </div>
+        </div>
+
+        <div class="subtitles">
+            <h2 class="subtitle" id="wcAtms">GET WheelChair freindly ATMs</h2>
+            <p class="description">URL parameter: <strong>wa</strong></p>
+            <div class="curl">
+                <pre><code>curl -X GET "http://trenco.cs.st-andrews.ac.uk:24480/data/atms/brands/santander-uk-plc/?wa=true"</code></pre>
+            </div>
+        </div>
+
+        <div class="subtitles">
+            <h2 class="subtitle" id="combineSearch">Combined ATM Search</h2>
+            <div class="curl">
+                <pre><code>curl -X GET "http://trenco.cs.st-andrews.ac.uk:24480/data/atms/brands/santander-uk-plc/?town=manchester&aoi=false&wa=true"</code></pre>
+            </div>
+        </div>
+
+    </div>
+    
+</body>
+</html>
