@@ -79,6 +79,10 @@ function getBranch() {
             data.forEach(branch => {
                 let branchElement = document.createElement('div');
         
+                let IdElement = document.createElement('p');
+                IdElement.textContent = `Branch ID: ${branch.Identification}`;
+                branchElement.appendChild(IdElement);
+
                 let AccessibilityElement = document.createElement('p');
                 AccessibilityElement.textContent = `Branch Accessibility: ${branch.Accessibility}`;
                 branchElement.appendChild(AccessibilityElement);
@@ -93,7 +97,14 @@ function getBranch() {
                     branchElement.appendChild(openingHoursElement);
                 }
 
-        
+                let streetElement = document.createElement('p');
+                streetElement.textContent = `Street: ${branch.PostalAddress.StreetName}`;
+                branchElement.appendChild(streetElement);
+
+                let townElement = document.createElement('p');
+                townElement.textContent = `Town: ${branch.PostalAddress.TownName}`;
+                branchElement.appendChild(townElement);
+
                 parentElement.appendChild(branchElement);
             });
         })
@@ -104,4 +115,5 @@ function getBranch() {
 
 window.onload = function() {
     document.getElementById('jsonExample').textContent = JSON.stringify([{"Identification":"A021461A","SupportedLanguages":["en","es"],"ATMServices":["CashWithdrawal","CashDeposits","PINChange","ChequeDeposits","Balance"],"Accessibility":["AudioCashMachine","WheelchairAccess"],"Access24HoursIndicator":false,"SupportedCurrencies":["GBP"],"MinimumPossibleAmount":"10","Note":["DATM"],"OtherAccessibility":[{"Code":"DTSA","Name":"Digital Touch Screen","Description":"All our Digital ATM's are fitted with a touch screen for ease of access."}],"Branch":{"Identification":"0214"},"Location":{"LocationCategory":["BranchInternal"],"OtherLocationCategory":[{"Code":"BRIN","Name":"BRANCH INTERNAL","Description":"Internal ATM at a Branch"}],"Site":{"Identification":"1214","Name":"ABERYSTWYTH 1 GD"},"PostalAddress":{"StreetName":"1 GREAT DARKGATE ST","TownName":"Aberystwyth","CountrySubDivision":["Dyfed"],"Country":"GB","PostCode":"SY23 1DE","GeoLocation":{"GeographicCoordinates":{"Latitude":"52.415085","Longitude":"-4.083687"}}}}},{"Identification":"A021462A","SupportedLanguages":["en","es"],"ATMServices":["CashWithdrawal","CashDeposits","PINChange","ChequeDeposits","Balance"],"Accessibility":["AudioCashMachine"],"Access24HoursIndicator":true,"SupportedCurrencies":["GBP"],"MinimumPossibleAmount":"10","Note":["DATM"],"OtherAccessibility":[{"Code":"DTSA","Name":"Digital Touch Screen","Description":"All our Digital ATM's are fitted with a touch screen for ease of access."}],"Branch":{"Identification":"0214"},"Location":{"LocationCategory":["BranchExternal"],"OtherLocationCategory":[{"Code":"BREX","Name":"BRANCH EXTERNAL","Description":"External ATM at a Branch"}],"Site":{"Identification":"1214","Name":"ABERYSTWYTH 1 GD"},"PostalAddress":{"StreetName":"1 GREAT DARKGATE ST","TownName":"Aberystwyth","CountrySubDivision":["Dyfed"],"Country":"GB","PostCode":"SY23 1DE","GeoLocation":{"GeographicCoordinates":{"Latitude":"52.415085","Longitude":"-4.083687"}}}}}], null, 2);
+    document.getElementById('jsonExample2').textContent = JSON.stringify([{"Identification":"6071","SequenceNumber":"0","Name":"Manchester 28-34 CS","Type":"Physical","CustomerSegment":["Business","Personal","Premier","SME"],"ServiceAndFacility":["WiFi"],"Accessibility":["AutomaticDoors","InductionLoop","LevelAccess","LowerLevelCounter","WheelchairAccess"],"Availability":{"StandardAvailability":{"Day":[{"Name":"Monday","OpeningHours":[{"OpeningTime":"09:30","ClosingTime":"17:00"}]},{"Name":"Tuesday","OpeningHours":[{"OpeningTime":"09:30","ClosingTime":"17:00"}]},{"Name":"Wednesday","OpeningHours":[{"OpeningTime":"09:30","ClosingTime":"17:00"}]},{"Name":"Thursday","OpeningHours":[{"OpeningTime":"09:30","ClosingTime":"17:00"}]},{"Name":"Friday","OpeningHours":[{"OpeningTime":"09:30","ClosingTime":"17:00"}]},{"Name":"Saturday","OpeningHours":[{"OpeningTime":"00:00","ClosingTime":"00:00"}]},{"Name":"Sunday","OpeningHours":[{"OpeningTime":"00:00","ClosingTime":"00:00"}]}]}},"ContactInfo":[{"ContactType":"Phone","ContactContent":"08000284157"}],"PostalAddress":{"BuildingNumber":"28-34","StreetName":"CROSS STREET","TownName":"Manchester","CountrySubDivision":["Greater Manchester"],"Country":"GB","PostCode":"M2 7AQ","GeoLocation":{"GeographicCoordinates":{"Latitude":"53.481888","Longitude":"-2.244768"}}}}], null, 2);
 }
