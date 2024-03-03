@@ -9,6 +9,12 @@ window.addEventListener("load", () => {
     populateGrid();
 })
 
+document.body.addEventListener('click', function (event) {
+    if (event.target.id.search(new RegExp()) > -1) {
+
+    }
+})
+
 async function populateGrid() {
     let count = 0;
     for (let lat = max_lat; lat>min_lat; lat -= incr){ // Up -> Down
@@ -17,28 +23,25 @@ async function populateGrid() {
             let response = await fetch (q).then(r => r.json());
             let size = response.length
             if (size > 0) {
-                appendToGrid(true, lon, lat);
+                appendToGrid(true, lat, lon);
                 count++;
             } else { //if no atm in range
-                appendToGrid(false, lon, lat);
+                appendToGrid(false, lat, lon);
                 count++;
             }
         }
         console.log(`${count} Grids displayed`);
     }
-    
-    let response = await fetch(url).then(r => r.json());
-    let size
 }
 
-function appendToGrid(bool, long, lat) {
+function appendToGrid(bool, lat, lon) {
     newDiv = document.createElement("div");
     if (bool) {
-        newDiv.id = `${long},${lat}`;
+        newDiv.id = `${lat},${lon}`;
         newDiv.classList.add("grid-item");
-        newDiv.addEventListener('mouseover', () => {
+        newDiv.addEventListener('click', () => {
             emptyInfo();
-            displayInfo();
+            displayInfo(lat, lon);
             //document.getElementById("info").innerHTML = elem.innerHTML
         })
     } else {
@@ -47,25 +50,18 @@ function appendToGrid(bool, long, lat) {
     document.getElementById("map").appendChild(newDiv);
 }
 
-function displayInfo(long,lat) {
-    let q = `${url}latmin=${lat-incr}&latmax=${lat}&lonmin=${long}&lonmax=${long +incr}`
+async function displayInfo(lat,lon) {
+    let q = `${url}latmin=${lat-incr}&latmax=${lat}&lonmin=${lon}&lonmax=${lon +incr}`
     let elem = document.getElementById("info");
-    fetch(q)
-        .then (r => r.json())
-        .then (response => {
-            response.forEach(atm => {
-                let atmInfo = document.createElement('p');
-                let text = `Town: ${atm.Location.PostalAddress.TownName}\n`
-                text += `Accessibility Features: ${atm.Accessibility}\n`
-                text += `24 hours: ${atm.Access24HoursIndicator ? "Yes" : "No"}\n`
-                atmInfo.appendChild(document.createTextNode(text))
-                elem.append(atmInfo)
-                //parentNode.appendChild(atmInfo);
-            })
-        })
-        .catch(error => {
-            console.log(`Error: ${error}`)
-        })
+    let response = await fetch(q).then (r => r.json())
+    response.forEach(atm => {
+        let atmInfo = document.createElement('p');
+        let text = `Town: ${atm.Location.PostalAddress.TownName}\n`
+        text += `Accessibility Features: ${atm.Accessibility}\n`
+        text += `24 hours: ${atm.Access24HoursIndicator ? "Yes" : "No"}\n`
+        atmInfo.appendChild(document.createTextNode(text))
+        elem.append(atmInfo)
+    })
 }
 
 function emptyInfo() {
