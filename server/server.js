@@ -96,6 +96,9 @@ function CreateServer(port = 24480)
     {
         let id = req.query.id;
 
+        let wa = req.query.wa;
+        let town = req.query.town;
+
         function satisfiesQuery(branch) {
 
             if(id) {
@@ -105,6 +108,33 @@ function CreateServer(port = 24480)
                 }
             }
 
+            if(town) {
+                if(branch.PostalAddress.TownName.toLowerCase() !== town.toLowerCase())
+                {
+                    return false;
+                }
+            }
+
+            if(wa) {
+                switch (wa) {
+                    case "true":
+                        if(!branch.Accessibility.includes("WheelchairAccess")) {
+                            return false;
+                        }
+                        break;
+    
+                    case "false":
+                        if(branch.Accessibility.includes("WheelchairAccess"))
+                        {
+                            return false;
+                        }
+                        break;
+                
+                    default:
+                        break;
+                }
+            }
+            
             return true;
         }
 
