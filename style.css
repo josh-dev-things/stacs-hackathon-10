@@ -35,21 +35,7 @@ h1 {
     text-align: center;
     margin: 0 auto;
 }
-#atmInfo {
-    max-height: 600px; 
-    overflow-y: auto; 
-    border: 1px solid black; 
-    margin-top: 20px; 
-    padding: 10px; 
-}
-
-#atmInfo > div {
-    border-top: 1px solid black; 
-    margin-top: 10px; 
-    padding-top: 10px; 
-}
-
-#atmInfo > div:first-child {
-    border-top: none; 
-    margin-top: 0; 
+#info {
+    max-height: 1200;
+    overflow-y: scroll;
 }

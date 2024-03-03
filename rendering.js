@@ -36,17 +36,20 @@ function appendToGrid(bool, long, lat) {
     if (bool) {
         newDiv.id = `${long},${lat}`;
         newDiv.classList.add("grid-item");
-        /* newDiv.addEventListener("onclick", () => {
-            displayData(long,lat)
-        }); */
+        newDiv.addEventListener('mouseover', () => {
+            emptyInfo();
+            displayInfo();
+            //document.getElementById("info").innerHTML = elem.innerHTML
+        })
     } else {
         newDiv.classList.add("filler");
     }
     document.getElementById("map").appendChild(newDiv);
 }
 
-function displayData(long,lat) {
-    let q = `${url}latmin=${lat}&latmax=${lat+incr}&lonmin=${long-incr}&lonmax=${long}`
+function displayInfo(long,lat) {
+    let q = `${url}latmin=${lat-incr}&latmax=${lat}&lonmin=${long}&lonmax=${long +incr}`
+    let elem = document.getElementById("info");
     fetch(q)
         .then (r => r.json())
         .then (response => {
@@ -56,19 +59,19 @@ function displayData(long,lat) {
                 text += `Accessibility Features: ${atm.Accessibility}\n`
                 text += `24 hours: ${atm.Access24HoursIndicator ? "Yes" : "No"}\n`
                 atmInfo.appendChild(document.createTextNode(text))
-                nodes.append(atmInfo)
+                elem.append(atmInfo)
                 //parentNode.appendChild(atmInfo);
             })
         })
         .catch(error => {
             console.log(`Error: ${error}`)
         })
-    let parentNode = document.getElementById("info");
-    while (parentNode.hasChildNodes()){
-        parentNode.removeChild(parentNode.firstChild);
-    }
-    let nodes = []
-    for (const element in nodes) {
-        parentNode.appendChild(element);
+}
+
+function emptyInfo() {
+    let elem = document.getElementById("info");
+    while(elem.hasChildNodes()){
+        elem.firstChild.innerHTML = ""
+        elem.removeChild(elem.firstChild);
     }
 }
