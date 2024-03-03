@@ -48,9 +48,9 @@ h1, h2 {
     align-items: center;
 }
 #info {
-    max-height: 1200;
+    max-height: 600px;
     padding: 10px;
-    overflow-y: scroll;
+    overflow-y: auto;
     background-color:#9053a9;
     color: white;
     font-weight: bold;

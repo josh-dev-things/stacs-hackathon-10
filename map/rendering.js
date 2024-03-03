@@ -75,6 +75,7 @@ async function displayInfo(lat,lon) {
         let atmInfo = document.createElement('p');
         let text = `${atm.Location.PostalAddress.TownName}, ${atm.Location.PostalAddress.PostCode}<br>`;
         text += `Accessibility: ${atm.Accessibility}<br>`;
+        text += `Languages: ${atm.SupportedLanguages}<br>`;
         atmInfo.innerHTML = text;
         elem.append(atmInfo);
     })
