@@ -7,7 +7,7 @@ const cors = require('cors');
 const Time = require('./timestamp.js');
 
 /**
- * Create a new express server
+ * Create a new express server. Usage: `npm start` at root dir
  * @param {Number} port : port server listens on (24480) 
  */
 function CreateServer(port = 24480)
