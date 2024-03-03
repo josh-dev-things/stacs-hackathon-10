@@ -9,24 +9,22 @@ window.addEventListener("load", () => {
     populateGrid();
 })
 
-function populateGrid() {
-    for (let lat = max_lat; lat>min_lat; lat -= incr){
-        for (let lon = min_lon; lon<max_lon; lon += incr) {
+async function populateGrid() {
+    let count = 0;
+    for (let lat = max_lat; lat>min_lat; lat -= incr){ // Up -> Down
+        for (let lon = min_lon+incr; lon<max_lon; lon += incr) { // Left -> Right
             let q = `${url}latmin=${lat-incr}&latmax=${lat}&lonmin=${lon}&lonmax=${lon+incr}`
-            fetch (q)
-                .then (r => r.json())
-                .then(response => {
-                    let size = response.length
-                    if (size > 0) {
-                        appendToGrid(true, lon, lat);
-                    } else { //if no atm in range
-                        appendToGrid(false, lon, lat);
-                    }
-                })
-                .catch(error => {
-                    console.log(`Error: ${error}`)
-                })
+            let response = await fetch (q).then(r => r.json());
+            let size = response.length
+            if (size > 0) {
+                appendToGrid(true, lon, lat);
+                count++;
+            } else { //if no atm in range
+                appendToGrid(false, lon, lat);
+                count++;
+            }
         }
+        console.log(count);
     }
     
     /* for (let long=min_long; long<max_long; long += incr) {
