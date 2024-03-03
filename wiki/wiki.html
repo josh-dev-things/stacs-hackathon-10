@@ -112,18 +112,37 @@
 
         <div class="subtitles">
             <h2 class="subtitle" id="RetrieveTownorPc">GET ATMs from Town or PostCode</h2>
+            <p class="description">For a Town:<br>URL parameter: <strong>town</strong></p>
+            <div class="curl">
+                <pre><code>curl -X GET "http://trenco.cs.st-andrews.ac.uk:24480/data/atms/brands/santander-uk-plc/?town=dundee"</code></pre>
+            </div>
+            <p class="description">For a PostCode:<br>URL parameter: <strong>postcode</strong></p>
+            <div class="code">
+                <pre><code>curl -X GET "http://trenco.cs.st-andrews.ac.uk:24480/data/atms/brands/santander-uk-plc/?postcode=SY231DE"</code></pre>
+            </div>
         </div>
 
         <div class="subtitles">
             <h2 class="subtitle" id="24list">GET list of 24hr ATMs</h2>
+            <p class="description">URL parameter: <strong>aoi</strong></p>
+            <div class="curl">
+                <pre><code>curl -X GET "http://trenco.cs.st-andrews.ac.uk:24480/data/atms/brands/santander-uk-plc/?aoi=true"</code></pre>
+            </div>
         </div>
 
         <div class="subtitles">
             <h2 class="subtitle" id="wcAtms">GET WheelChair freindly ATMs</h2>
+            <p class="description">URL parameter: <strong>wa</strong></p>
+            <div class="curl">
+                <pre><code>curl -X GET "http://trenco.cs.st-andrews.ac.uk:24480/data/atms/brands/santander-uk-plc/?wa=true"</code></pre>
+            </div>
         </div>
 
         <div class="subtitles">
             <h2 class="subtitle" id="combineSearch">Combined ATM Search</h2>
+            <div class="curl">
+                <pre><code>curl -X GET "http://trenco.cs.st-andrews.ac.uk:24480/data/atms/brands/santander-uk-plc/?town=manchester&aoi=false&wa=true"</code></pre>
+            </div>
         </div>
 
     </div>
