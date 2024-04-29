@@ -11,5 +11,4 @@ Our submission to the *St Andrews Computing Society's* 24-hour Hackathon (2024)
     - Runner up in the NCR Atleos challenge
 
 ## About
-API for accessing ATM And Bank Branch information such as location, accessibilty provisions etc. Project also featured a demonstration of a client-side application as well as "public".
-
+API for accessing ATM And Bank Branch information such as location, accessibilty provisions etc. Project also featured a demonstration of a client-side application as well as "public". You can access the slides for the presentation [here](presentation/Hack10-Pres.pdf). The `src/` directory contains the [wiki for the API's usage](src/wiki.html).
